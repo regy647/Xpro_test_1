@@ -1,0 +1,80 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model WorkLogMonthViewModel
+
+<div class="container">
+    <h2>Work Log for @Model.Month @Model.Year</h2>
+
+    <!-- Month & Year Select Dropdowns -->
+    <div class="form-group">
+        <label for="month">Select Month</label>
+        <select id="month" name="month" class="form-control" onchange="changeMonthYear()">
+            @foreach (var month in Model.MonthSelectList)
+            {
+                <option value="@month.Value" @(month.Value == Model.Month.ToString() ? "selected" : "")>
+                    @month.Text
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="year">Select Year</label>
+        <select id="year" name="year" class="form-control" onchange="changeMonthYear()">
+            @foreach (var year in Model.YearSelectList)
+            {
+                <option value="@year.Value" @(year.Value == Model.Year.ToString() ? "selected" : "")>
+                    @year.Text
+                </option>
+            }
+        </select>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="button-group">
+        <a href="@Url.Action("PreviousMonth", "WorkLog")" class="btn btn-secondary">Previous Month</a>
+        <a href="@Url.Action("NextMonth", "WorkLog")" class="btn btn-secondary">Next Month</a>
+    </div>
+
+    <!-- Work Logs Table -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Day</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Lunch Duration</th>
+                <th>Worked Hours</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var log in Model.WorkLogs)
+            {
+                <tr>
+                    <td>@log.Date.ToString("yyyy-MM-dd")</td>
+                    <td>@log.DayOfWeek</td>
+                    <td>@log.StartOfWorkday</td>
+                    <td>@log.EndOfWorkday</td>
+                    <td>@log.LunchDuration</td>
+                    <td>@log.SumOfWorkedHours</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "WorkLog", new { id = log.Id })" class="btn btn-primary">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function changeMonthYear() {
+        var month = document.getElementById("month").value;
+        var year = document.getElementById("year").value;
+        window.location.href = "/WorkLog/Index?month=" + month + "&year=" + year;
+    }
+</script>

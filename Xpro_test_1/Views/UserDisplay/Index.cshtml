@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Manage users</h2>
+
+<!-- Add New User Button -->
+<a asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary">Add New User</a>
+
+<!-- Filters -->
+<div class="mb-3">
+    <a asp-action="Index" asp-route-filter="all" class="btn btn-secondary @(ViewData["filter"]?.ToString() == "all" ? "active" : "")">Show All</a>
+    <a asp-action="Index" asp-route-filter="active" class="btn btn-success @(ViewData["filter"]?.ToString() == "active" ? "active" : "")">Show Active</a>
+    <a asp-action="Index" asp-route-filter="inactive" class="btn btn-danger @(ViewData["filter"]?.ToString() == "inactive" ? "active" : "")">Show Inactive</a>
+</div>
+
+<!-- Search Bar -->
+<form asp-action="Index" method="get">
+    <div class="input-group mb-3">
+        <input type="text" name="searchQuery" class="form-control" placeholder="Search by name..." value="@ViewData["searchQuery"]" />
+        <button type="submit" class="btn btn-outline-primary">Search</button>
+    </div>
+</form>
+
+<!-- User Table -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Job position</th>
+            <th>Employment type</th>
+            <th>Employment comment</th>
+            <th>Active</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>@user.PhoneNumber</td>
+                <td>@user.Position</td>
+                <td>@user.EmploymentType</td>
+                <td>@user.EmploymentComment</td>
+                <td>@(user.IsActive ? "Yes" : "No")</td>
+                <td>
+                    <a href="/Identity/Account/Manage/Index?userId=@user.Id" class="btn btn-primary">Edit</a>
+                    @*<a asp-area="Identity" asp-page="/Account/Manage/Index" asp-route-id="@user.Id" class="btn btn-warning">Edit</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

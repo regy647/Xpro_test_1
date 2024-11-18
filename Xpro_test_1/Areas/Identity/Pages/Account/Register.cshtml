@@ -1,0 +1,137 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Create a new account.</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-floating">
+                <input asp-for="Input.Name" class="form-control" autocomplete="Full name" />
+                <label asp-for="Input.Name"></label>
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating">
+                <input asp-for="Input.Email" class="form-control" autocomplete="Email" />
+                <label asp-for="Input.Email"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating">
+                <input asp-for="Input.PhoneNumber" class="form-control" autocomplete="Phone number" />
+                <label asp-for="Input.PhoneNumber"></label>
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating">
+                <input asp-for="Input.Position" class="form-control" autocomplete="Position" />
+                <label asp-for="Input.Position"></label>
+                <span asp-validation-for="Input.Position" class="text-danger"></span>
+            </div>
+
+            <!-- EmploymentType Dropdown -->
+            <div class="form-floating">
+                <select asp-for="Input.EmploymentType" class="form-control" id="employmentTypeDropdown">
+                    <option value="" disabled selected>--</option> <!-- Placeholder option -->
+                    @foreach (var type in Enum.GetValues(typeof(EmploymentType)))
+                    {
+                        <option value="@type">@type</option>
+                    }
+                </select>
+                <label asp-for="Input.EmploymentType"></label>
+                <span asp-validation-for="Input.EmploymentType" class="text-danger"></span>
+            </div>
+            <!-- EmploymentComment (conditionally displayed) -->
+            <div class="form-floating" id="employmentCommentDiv" style="display: none;">
+                <input asp-for="Input.EmploymentComment" class="form-control" autocomplete="employment comment" />
+                <label asp-for="Input.EmploymentComment"></label>
+                <span asp-validation-for="Input.EmploymentComment" class="text-danger"></span>
+            </div>
+            <br>
+            <!-- IsActive Switch -->
+            <div class="form-group">
+                <p>Are you an active employee at this time?</p> <!-- Descriptive text -->
+                <div class="form-check form-switch">
+                    <input asp-for="Input.IsActive" class="form-check-input" type="checkbox" id="isActiveSwitch">
+                    <label asp-for="Input.IsActive" class="form-check-label">Active</label>
+                </div>
+                <span asp-validation-for="Input.IsActive" class="text-danger"></span>
+            </div>
+            <br>
+            <div class="form-floating">
+                <input asp-for="Input.UserName" class="form-control" autocomplete="User name" />
+                <label asp-for="Input.UserName"></label>
+                <span asp-validation-for="Input.UserName" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" />
+                <label asp-for="Input.Password"></label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" />
+                <label asp-for="Input.ConfirmPassword"></label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <br />
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+        </form>
+    </div>
+</div>
+
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h3>Use another service to register.</h3>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+                            about setting up this ASP.NET application to support logging in via external services</a>.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins!)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById("employmentTypeDropdown").addEventListener("change", function () {
+            const selectedValue = this.value;
+            const employmentCommentDiv = document.getElementById("employmentCommentDiv");
+            if (selectedValue === "Drugo") {
+                employmentCommentDiv.style.display = "block";
+            } else {
+                employmentCommentDiv.style.display = "none";
+            }
+        });
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}

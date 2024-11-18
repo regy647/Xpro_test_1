@@ -1,0 +1,119 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Manage Profile";
+    //ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<h3>@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div class="row">
+    <div class="col-md-6">
+        <form id="profile-form" method="post">
+            <input type="hidden" name="userId" value="@Request.Query["userId"]" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.UserName" class="form-control" />
+                <label asp-for="Input.UserName" class="form-label"></label>
+                <span asp-validation-for="Input.UserName" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" />
+                <label asp-for="Input.Email" class="form-label"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.PhoneNumber" class="form-control" />
+                <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Name" class="form-control" />
+                <label asp-for="Input.Name" class="form-label"></label>
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Position" class="form-control" />
+                <label asp-for="Input.Position" class="form-label"></label>
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select asp-for="Input.EmploymentType" id="employmentTypeDropdown" class="form-select">
+                    <option value="">-- Select Employment Type --</option>
+                    <option value="DoločenČas">Določen Čas</option>
+                    <option value="NedoločenČas">Nedoločen Čas</option>
+                    <option value="Student">Student</option>
+                    <option value="Avtorsko">Avtorsko</option>
+                    <option value="SP">SP</option>
+                    <option value="Drugo">Drugo</option>
+                </select>
+                <label asp-for="Input.EmploymentType" class="form-label"></label>
+                <span asp-validation-for="Input.EmploymentType" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3" id="employmentCommentDiv" style="display:none;">
+                <input asp-for="Input.EmploymentComment" class="form-control" />
+                <label asp-for="Input.EmploymentComment" class="form-label"></label>
+                <span asp-validation-for="Input.EmploymentComment" class="text-danger"></span>
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="Input.IsActive" class="form-check-input" />
+                <label asp-for="Input.IsActive" class="form-check-label"></label>
+            </div>
+
+            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+        </form>
+    </div>
+</div>
+
+@inject UserManager<ApplicationUser> UserManager
+@{
+    var loggedInUserId = UserManager.GetUserId(User);
+    var userIdFromRoute = Request.Query["userId"];
+}
+
+<div class="mt-3">
+    <a href="@Url.Page("./ChangePassword", new { userId = userIdFromRoute })" class="btn btn-warning">
+        Change Password
+    </a>
+</div>
+
+@section Scripts {
+    <script>
+        // Event listener for when the user changes the Employment Type
+        document.getElementById("employmentTypeDropdown").addEventListener("change", function () {
+            const selectedValue = this.value;
+            const employmentCommentDiv = document.getElementById("employmentCommentDiv");
+
+            // Show or hide Employment Comment field based on the selected value
+            if (selectedValue === "Drugo") {
+                employmentCommentDiv.style.display = "block"; // Show the Employment Comment field
+            } else {
+                employmentCommentDiv.style.display = "none"; // Hide the Employment Comment field
+            }
+        });
+
+        // Ensure the Employment Comment field visibility is correct when the page loads (if "Drugo" is already selected)
+        document.addEventListener("DOMContentLoaded", function () {
+            const employmentTypeDropdown = document.getElementById("employmentTypeDropdown");
+            const employmentCommentDiv = document.getElementById("employmentCommentDiv");
+
+            // Check if the selected EmploymentType is "Drugo" on page load
+            if (employmentTypeDropdown.value === "Drugo") {
+                employmentCommentDiv.style.display = "block"; // Show the Employment Comment field
+            }
+        });
+    </script>
+
+    <partial name="_ValidationScriptsPartial" />
+}
+
