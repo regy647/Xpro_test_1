@@ -11,14 +11,13 @@ namespace Xpro_test_1.Models
 
         [Required]
         public string UserId { get; set; } 
-        public ApplicationUser User { get; set; } 
+        //public ApplicationUser User { get; set; } 
 
         [Required]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
-        [Required]
-        public string DayOfWeek { get; set; }
+        public string? DayOfWeek { get; set; }
 
         [Required]
         public string DayStatus { get; set; } 

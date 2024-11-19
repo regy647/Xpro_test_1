@@ -26,11 +26,17 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
 
         // Configure WorkLog to User relationship
+        //builder.Entity<WorkLog>()
+        //    .HasOne(w => w.User)
+        //    .WithMany(u => u.WorkLogs)
+        //    .HasForeignKey(w => w.UserId)
+        //    .OnDelete(DeleteBehavior.Cascade);
+
         builder.Entity<WorkLog>()
-            .HasOne(w => w.User)
-            .WithMany(u => u.WorkLogs)
-            .HasForeignKey(w => w.UserId)
-            .OnDelete(DeleteBehavior.Cascade);
+        .HasOne<ApplicationUser>()  // Only specify the related entity type
+        .WithMany()  // No navigation property on the ApplicationUser class
+        .HasForeignKey(w => w.UserId)  // Use the UserId property as the foreign key
+        .OnDelete(DeleteBehavior.Cascade);
 
         // Configure WorkLog to Absence relationship, make AbsenceId nullable
         builder.Entity<WorkLog>()

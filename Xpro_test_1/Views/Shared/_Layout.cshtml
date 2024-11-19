@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Xpro_test_1</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -28,9 +28,14 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="UserDisplay" asp-action="Index">Manage Users</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="WorkLog" asp-action="Index">Work logs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Absence" asp-action="Index">Absences</a>
+                        </li>
                     </ul> 
                 </div>
-                <!--login menu desno zgoraj-->
                 <partial name="_LoginPartial"/>
             </div>
         </nav>

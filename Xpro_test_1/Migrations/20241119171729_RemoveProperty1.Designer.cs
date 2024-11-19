@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Xpro_test_1.Areas.Identity.Data;
 
@@ -11,9 +12,10 @@ using Xpro_test_1.Areas.Identity.Data;
 namespace Xpro_test_1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241119171729_RemoveProperty1")]
+    partial class RemoveProperty1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -298,6 +300,7 @@ namespace Xpro_test_1.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DayOfWeek")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DayStatus")
@@ -346,7 +349,7 @@ namespace Xpro_test_1.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 11, 19, 18, 25, 43, 373, DateTimeKind.Local).AddTicks(326),
+                            CreatedAt = new DateTime(2024, 11, 19, 18, 17, 28, 813, DateTimeKind.Local).AddTicks(7659),
                             Date = new DateTime(2024, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DayOfWeek = "Sunday",
                             DayStatus = "Weekend",
@@ -361,7 +364,7 @@ namespace Xpro_test_1.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 11, 19, 18, 25, 43, 373, DateTimeKind.Local).AddTicks(332),
+                            CreatedAt = new DateTime(2024, 11, 19, 18, 17, 28, 813, DateTimeKind.Local).AddTicks(7667),
                             Date = new DateTime(2024, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DayOfWeek = "Tuesday",
                             DayStatus = "Workday",
@@ -376,7 +379,7 @@ namespace Xpro_test_1.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 11, 19, 18, 25, 43, 373, DateTimeKind.Local).AddTicks(337),
+                            CreatedAt = new DateTime(2024, 11, 19, 18, 17, 28, 813, DateTimeKind.Local).AddTicks(7675),
                             Date = new DateTime(2024, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DayOfWeek = "Thursday",
                             DayStatus = "Workday",
@@ -391,7 +394,7 @@ namespace Xpro_test_1.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2024, 11, 19, 18, 25, 43, 373, DateTimeKind.Local).AddTicks(342),
+                            CreatedAt = new DateTime(2024, 11, 19, 18, 17, 28, 813, DateTimeKind.Local).AddTicks(7686),
                             Date = new DateTime(2024, 9, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DayOfWeek = "Friday",
                             DayStatus = "Workday",
@@ -407,7 +410,7 @@ namespace Xpro_test_1.Migrations
                         {
                             Id = 5,
                             AbsenceId = 1,
-                            CreatedAt = new DateTime(2024, 11, 19, 18, 25, 43, 373, DateTimeKind.Local).AddTicks(348),
+                            CreatedAt = new DateTime(2024, 11, 19, 18, 17, 28, 813, DateTimeKind.Local).AddTicks(7697),
                             Date = new DateTime(2024, 9, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DayOfWeek = "Sunday",
                             DayStatus = "Weekend",
@@ -422,7 +425,7 @@ namespace Xpro_test_1.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2024, 11, 19, 18, 25, 43, 373, DateTimeKind.Local).AddTicks(359),
+                            CreatedAt = new DateTime(2024, 11, 19, 18, 17, 28, 813, DateTimeKind.Local).AddTicks(7706),
                             Date = new DateTime(2024, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DayOfWeek = "Wednesday",
                             DayStatus = "Workday",
@@ -437,7 +440,7 @@ namespace Xpro_test_1.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2024, 11, 19, 18, 25, 43, 373, DateTimeKind.Local).AddTicks(367),
+                            CreatedAt = new DateTime(2024, 11, 19, 18, 17, 28, 813, DateTimeKind.Local).AddTicks(7712),
                             Date = new DateTime(2024, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DayOfWeek = "Friday",
                             DayStatus = "Workday",
@@ -452,7 +455,7 @@ namespace Xpro_test_1.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2024, 11, 19, 18, 25, 43, 373, DateTimeKind.Local).AddTicks(372),
+                            CreatedAt = new DateTime(2024, 11, 19, 18, 17, 28, 813, DateTimeKind.Local).AddTicks(7722),
                             Date = new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DayOfWeek = "Thursday",
                             DayStatus = "Workday",
@@ -467,7 +470,7 @@ namespace Xpro_test_1.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2024, 11, 19, 18, 25, 43, 373, DateTimeKind.Local).AddTicks(376),
+                            CreatedAt = new DateTime(2024, 11, 19, 18, 17, 28, 813, DateTimeKind.Local).AddTicks(7727),
                             Date = new DateTime(2024, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DayOfWeek = "Saturday",
                             DayStatus = "Weekend",
@@ -483,7 +486,7 @@ namespace Xpro_test_1.Migrations
                         {
                             Id = 10,
                             AbsenceId = 2,
-                            CreatedAt = new DateTime(2024, 11, 19, 18, 25, 43, 373, DateTimeKind.Local).AddTicks(381),
+                            CreatedAt = new DateTime(2024, 11, 19, 18, 17, 28, 813, DateTimeKind.Local).AddTicks(7735),
                             Date = new DateTime(2024, 10, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DayOfWeek = "Monday",
                             DayStatus = "Workday",
@@ -498,7 +501,7 @@ namespace Xpro_test_1.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2024, 11, 19, 18, 25, 43, 373, DateTimeKind.Local).AddTicks(386),
+                            CreatedAt = new DateTime(2024, 11, 19, 18, 17, 28, 813, DateTimeKind.Local).AddTicks(7741),
                             Date = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DayOfWeek = "Friday",
                             DayStatus = "Workday",
@@ -513,7 +516,7 @@ namespace Xpro_test_1.Migrations
                         new
                         {
                             Id = 12,
-                            CreatedAt = new DateTime(2024, 11, 19, 18, 25, 43, 373, DateTimeKind.Local).AddTicks(392),
+                            CreatedAt = new DateTime(2024, 11, 19, 18, 17, 28, 813, DateTimeKind.Local).AddTicks(7748),
                             Date = new DateTime(2024, 11, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DayOfWeek = "Sunday",
                             DayStatus = "Weekend",
@@ -528,7 +531,7 @@ namespace Xpro_test_1.Migrations
                         new
                         {
                             Id = 13,
-                            CreatedAt = new DateTime(2024, 11, 19, 18, 25, 43, 373, DateTimeKind.Local).AddTicks(397),
+                            CreatedAt = new DateTime(2024, 11, 19, 18, 17, 28, 813, DateTimeKind.Local).AddTicks(7754),
                             Date = new DateTime(2024, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DayOfWeek = "Thursday",
                             DayStatus = "Workday",
@@ -543,7 +546,7 @@ namespace Xpro_test_1.Migrations
                         new
                         {
                             Id = 14,
-                            CreatedAt = new DateTime(2024, 11, 19, 18, 25, 43, 373, DateTimeKind.Local).AddTicks(402),
+                            CreatedAt = new DateTime(2024, 11, 19, 18, 17, 28, 813, DateTimeKind.Local).AddTicks(7763),
                             Date = new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DayOfWeek = "Sunday",
                             DayStatus = "Weekend",
@@ -559,7 +562,7 @@ namespace Xpro_test_1.Migrations
                         {
                             Id = 15,
                             AbsenceId = 2,
-                            CreatedAt = new DateTime(2024, 11, 19, 18, 25, 43, 373, DateTimeKind.Local).AddTicks(407),
+                            CreatedAt = new DateTime(2024, 11, 19, 18, 17, 28, 813, DateTimeKind.Local).AddTicks(7769),
                             Date = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DayOfWeek = "Friday",
                             DayStatus = "Workday",

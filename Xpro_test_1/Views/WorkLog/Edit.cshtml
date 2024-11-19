@@ -1,0 +1,58 @@
+﻿@model Xpro_test_1.Models.WorkLog
+
+<div class="container">
+    <h2>Edit Work Log</h2>
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" name="UserId" value="@Model.UserId" />
+
+        <div class="form-group">
+            <label asp-for="Date">Date</label>
+            <input type="date" asp-for="Date" class="form-control"  />
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="DayStatus">Day status</label>
+            <input type="text" asp-for="DayStatus" class="form-control" />
+            <span asp-validation-for="DayStatus" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="StartOfWorkday">Start of Workday</label>
+            <input type="time" asp-for="StartOfWorkday" class="form-control" />
+            <span asp-validation-for="StartOfWorkday" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="EndOfWorkday">End of Workday</label>
+            <input type="time" asp-for="EndOfWorkday" class="form-control" />
+            <span asp-validation-for="EndOfWorkday" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="StartOfLunch">Start of Lunch</label>
+            <input type="time" asp-for="StartOfLunch" class="form-control" />
+            <span asp-validation-for="StartOfLunch" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="EndOfLunch">End of Lunch</label>
+            <input type="time" asp-for="EndOfLunch" class="form-control" />
+            <span asp-validation-for="EndOfLunch" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="AbsenceId">Absence</label>
+            <select asp-for="AbsenceId" asp-items="ViewBag.AbsenceList" class="form-control">
+                <option value="">None</option>
+            </select>
+            <span asp-validation-for="AbsenceId" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+

@@ -3,6 +3,37 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h2>Last 5 Workdays Work Log Status</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Day of the Week</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var day in Model.WeekStatus)
+            {
+                <tr style="background-color: @((day.HasEntry ? "lightgreen" : "lightcoral"));">
+                    <td>@day.DayOfWeek</td>
+                    <td>@day.Date.ToString("yyyy-MM-dd")</td>
+                    <td>@(day.HasEntry ? "Entry Found" : "No Entry")</td>
+                    <td>
+                        @if (!day.HasEntry)
+                        {
+                            <a href="@Url.Action("Create", "WorkLog", new { date = day.Date.ToString("yyyy-MM-dd") })" class="btn btn-primary">Add Entry</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center mt-5">
+    <h4>Add a Different Work Log</h4>
+    <a href="@Url.Action("Create", "WorkLog")" class="btn btn-success">Add Work Log</a>
 </div>
