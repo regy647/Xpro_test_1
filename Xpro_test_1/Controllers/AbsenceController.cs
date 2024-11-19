@@ -100,38 +100,11 @@ namespace Xpro_test_1.Controllers
             _context.Absences.Remove(absence);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Index));  // Redirect to the Index page after deletion
+            return RedirectToAction(nameof(Index));  
         }
 
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Delete(int id)
-        //{
-        //    var absence = _context.Absences.FirstOrDefault(a => a.Id == id);
-        //    if (absence == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(absence);  
-        //}
-
-
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var absence = await _context.Absences.FindAsync(id);
-        //    if (absence == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _context.Absences.Remove(absence);
-        //    await _context.SaveChangesAsync();
-
-        //    return RedirectToAction(nameof(Index));
-        //}
+        //test test
 
 
         private bool AbsenceExists(int id)
