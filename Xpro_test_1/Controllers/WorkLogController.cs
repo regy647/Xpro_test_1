@@ -23,6 +23,7 @@ public class WorkLogController : Controller
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
     }
 
+    [HttpGet("WorkLog/CreateWithDate")]
     public IActionResult Create(string date)
     {
 
@@ -72,6 +73,11 @@ public class WorkLogController : Controller
         return View(model);
     }
 
+    [HttpGet("WorkLog/CreateNoArgument")]
+    public IActionResult Create()
+    {
+        return View();
+    }
 
     private List<SelectListItem> GetMonths()
     {
