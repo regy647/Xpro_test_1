@@ -24,7 +24,7 @@
                     <td>
                         @if (!day.HasEntry)
                         {
-                            <a href="@Url.Action("CreateWithDate", "WorkLog", new { date = day.Date.ToString("yyyy-MM-dd") })" class="btn btn-primary">Add Entry</a>
+                            <a href="@Url.Action( "create", "WorkLog", new { date = day.Date.ToString("yyyy-MM-dd") })" class="btn btn-primary">Add Entry</a>
                         }
                     </td>
                 </tr>
@@ -35,6 +35,6 @@
 
 <div class="text-center mt-5">
     <h4>Add a Different Work Log</h4>
-    <a href="@Url.Action("CreateNoArgument", "WorkLog")" class="btn btn-success">Add Work Log</a>
+    <a href="@Url.Action("Create", "WorkLog")" class="btn btn-success">Add Work Log</a>
 
 </div>
